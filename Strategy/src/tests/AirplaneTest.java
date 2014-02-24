@@ -5,9 +5,7 @@ package tests;
 
 import static org.junit.Assert.*; 
 
-import org.junit.BeforeClass;
 import org.junit.Test;
-
 import vehicles.Airplane;
 import vehicles.Flying;
 import vehicles.LiftOff;
@@ -18,28 +16,17 @@ import vehicles.LiftOff;
  *
  */
 public class AirplaneTest {
+	
 
-	private static FlyingFactory flyingFactory;
-	private static LiftOffFactory liftOffFactory;
-	private static AirplaneFactory airplaneFactory;
-	
-	@BeforeClass
-	public static void onlyOnce(){
-		flyingFactory = new FlyingFactory();
-		liftOffFactory = new LiftOffFactory();
-		airplaneFactory = new AirplaneFactory();
-	}
-
-	
-	
 	@Test
 	public void test1() {
 				
 		String expectedOutput = "Like a fighter jet";
 		String stringReturned = null;
+		AirPlaneFactory harrierFactory = new HarrierFactory();
 		
-		Flying fly = flyingFactory.createFlying("Fighter Jet");
-		LiftOff liftOff = liftOffFactory.createLiftOff("Lift Off V");  //new ILiftOffV();
+		Flying fly = harrierFactory.createFlying();
+		LiftOff liftOff = harrierFactory.createLiftOff();
 
 		Airplane classUnderTest = new Airplane(liftOff,fly);
 
@@ -55,11 +42,12 @@ public class AirplaneTest {
 				
 		String expectedOutput = "I don't Fly";
 		String stringReturned = null;
+		AirPlaneFactory dontFlyFactory = new DontFlyFactory();
 		
-		Flying fly = flyingFactory.createFlying("Don't Fly");
-		LiftOff liftOff = liftOffFactory.createLiftOff("Lift Off V"); //new ILiftOffV();
+		Flying fly = dontFlyFactory.createFlying();
+		LiftOff liftOff = dontFlyFactory.createLiftOff();
 
-		Airplane classUnderTest = airplaneFactory.createAirplane(liftOff,fly);
+		Airplane classUnderTest = new Airplane(liftOff,fly);
 
 		stringReturned = classUnderTest.howDoYouFly();
 
@@ -72,11 +60,12 @@ public class AirplaneTest {
 				
 		String expectedOutput = "Like a passenger airplane";
 		String stringReturned = null;
+		AirPlaneFactory passengerFactory = new PassengerFactory();
 		
-		Flying fly = flyingFactory.createFlying("Passenger Plane");
-		LiftOff liftOff = liftOffFactory.createLiftOff("Lift Off V");
+		Flying fly = passengerFactory.createFlying();
+		LiftOff liftOff = passengerFactory.createLiftOff();
 
-		Airplane classUnderTest = airplaneFactory.createAirplane(liftOff,fly);
+		Airplane classUnderTest = new Airplane(liftOff,fly);
 
 		stringReturned = classUnderTest.howDoYouFly();
 
@@ -90,11 +79,12 @@ public class AirplaneTest {
 				
 		String expectedOutput = "Vertically";
 		String stringReturned = null;
+		AirPlaneFactory harrierFactory = new HarrierFactory();
+		
+		Flying fly = harrierFactory.createFlying();
+		LiftOff liftOff = harrierFactory.createLiftOff();
 
-		Flying fly = flyingFactory.createFlying("Fighter Jet");  //new IFlyLikeFJ();
-		LiftOff liftOff = liftOffFactory.createLiftOff("Lift Off V"); //new ILiftOffV();
-
-		Airplane classUnderTest = airplaneFactory.createAirplane(liftOff,fly);
+		Airplane classUnderTest = new Airplane(liftOff,fly);
 
 		stringReturned = classUnderTest.howDoYouLiftOff();
 
@@ -107,11 +97,12 @@ public class AirplaneTest {
 				
 		String expectedOutput = "I don't LiftOff";
 		String stringReturned = null;
+		AirPlaneFactory dontFlyFactory = new DontFlyFactory();
+		
+		Flying fly = dontFlyFactory.createFlying();
+		LiftOff liftOff = dontFlyFactory.createLiftOff();
 
-		Flying fly = flyingFactory.createFlying("Fighter Jet");  //new IFlyLikeFJ();
-		LiftOff liftOff = liftOffFactory.createLiftOff("Don't Lift Off"); //new IDontLiftOff();
-
-		Airplane classUnderTest = airplaneFactory.createAirplane(liftOff,fly);
+		Airplane classUnderTest = new Airplane(liftOff,fly);
 
 		stringReturned = classUnderTest.howDoYouLiftOff();
 
@@ -122,13 +113,14 @@ public class AirplaneTest {
 	@Test
 	public void test6() {
 				
-		String expectedOutput = "Horizontally";
+		String expectedOutput = "Vertically";
 		String stringReturned = null;
+		AirPlaneFactory harrierFactory = new HarrierFactory();
+		
+		Flying fly = harrierFactory.createFlying();
+		LiftOff liftOff = harrierFactory.createLiftOff();
 
-		Flying fly = flyingFactory.createFlying("Fighter Jet");  //new IFlyLikeFJ();
-		LiftOff liftOff = liftOffFactory.createLiftOff("Lift Off H"); //new ILiftOffH();
-
-		Airplane classUnderTest = airplaneFactory.createAirplane(liftOff,fly);
+		Airplane classUnderTest = new Airplane(liftOff,fly);
 
 		stringReturned = classUnderTest.howDoYouLiftOff();
 
